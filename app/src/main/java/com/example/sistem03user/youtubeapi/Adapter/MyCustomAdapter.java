@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.sistem03user.youtubeapi.Model.VideoDetails;
 import com.example.sistem03user.youtubeapi.R;
 import com.squareup.picasso.Picasso;
@@ -52,10 +54,6 @@ public class MyCustomAdapter extends BaseAdapter {
 
         }
 
-
-
-
-
         ImageView imgfoto= convertView.findViewById(R.id.thumbnailView);
         final TextView title= convertView.findViewById(R.id.thumbnailTitle);
         final TextView descripcion=convertView.findViewById(R.id.textDescription);
@@ -63,23 +61,18 @@ public class MyCustomAdapter extends BaseAdapter {
         final TextView textVideoID=convertView.findViewById(R.id.textVideoID);
 
 
-
-        String url = (videoDetailsArrayList.get(position).getUrl());
-
-//        Picasso.load(videoDetailsArrayList.get(position).getUrl())
-//                .fit() // will explain later
-//                .into((ImageView) convertView);
-
-
-
-        //imgfoto.setImageResource(videoDetailsArrayList.get(position).getVideoId());
+        Glide.with(context)
+                .load(videoDetailsArrayList.get(position).getUrl())
+                .centerCrop()
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imgfoto);
 
 
         title.setText(videoDetailsArrayList.get(position).getTitle());
         textVideoID.setText(videoDetailsArrayList.get(position).getVideoId());
         descripcion.setText(videoDetailsArrayList.get(position).getDescription());
         textURL.setText(videoDetailsArrayList.get(position).getUrl());
-
 
 
         return convertView;

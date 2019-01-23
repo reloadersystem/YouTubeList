@@ -3,6 +3,8 @@ package com.example.sistem03user.youtubeapi;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,7 +28,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+
+
+    YouTubePlayerView youTubePlayerView;
+    String claveyoutube= "AIzaSyBBoMapePV_AthrQPLWevncKB-RVw6QXtw";
 
     ListView listView;
 
@@ -36,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
     MyCustomAdapter myCustomAdapter;
 
-    //String url="https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLlEW_8OcYYBQBg5gqGlKcb4Ztp1QvUG_t&key=AIzaSyD9GZLfzFIdowg9dIJyb6jfgac3P6mRp1U";
-    String url="https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLq_MGynXklvnlaed3VruS0dp1a7Qgpg4i&key=AIzaSyD9GZLfzFIdowg9dIJyb6jfgac3P6mRp1U";
+
+    //String url="https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLq_MGynXklvnlaed3VruS0dp1a7Qgpg4i&key=AIzaSyD9GZLfzFIdowg9dIJyb6jfgac3P6mRp1U";
+    String url="https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLq_MGynXklvnlaed3VruS0dp1a7Qgpg4i&key="+API_KEY;
 
 
 
@@ -54,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
         myCustomAdapter=  new MyCustomAdapter(MainActivity.this, videoDetailsArrayList);
 
         displayVideos();
+
+        listView.setOnItemClickListener(this);
 
 
     }
@@ -118,4 +127,36 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+
+        {
+
+            int  cantidadItemList= myCustomAdapter.getCount();
+
+            VideoDetails videoDetails= (VideoDetails)myCustomAdapter.getItem(position);
+
+            switch (position)
+            {
+                case 0:
+
+                    Toast.makeText(MainActivity.this,position+" ID: " + videoDetails.getVideoId(),  Toast.LENGTH_SHORT).show();
+                    break;
+
+                case 1:
+
+                    Toast.makeText(MainActivity.this,position+" ID: "+ videoDetails.getVideoId(),  Toast.LENGTH_SHORT).show();
+                    break;
+
+                case 2:
+
+                    Toast.makeText(MainActivity.this,position+" ID: "+ videoDetails.getVideoId(),  Toast.LENGTH_SHORT).show();
+                    break;
+
+            }
+
+        }
+
+    }
 }

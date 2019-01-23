@@ -4,10 +4,11 @@
     android:layout_height="match_parent"
     >
 
-        <com.google.android.youtube.player.YouTubeThumbnailView
+        <ImageView
             android:id="@+id/thumbnailView"
             android:layout_height="150dp"
             android:layout_width="150dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/youtube" />
 
 
@@ -49,7 +50,7 @@
         android:layout_toRightOf="@id/thumbnailView"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
-        android:text="URL" />
+        android:text="ID" />
 
 
 
